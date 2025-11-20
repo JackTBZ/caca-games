@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5angslyqhr2y"]
+
+[ext_resource type="Script" uid="uid://chpuc4dyxaeba" path="res://code/main_menu.gd" id="1_7vhwp"]
+[ext_resource type="PackedScene" uid="uid://xvogcebaehm3" path="res://scenes/MainMenu/backdrop_3d.tscn" id="1_fxnin"]
+[ext_resource type="PackedScene" uid="uid://dmi0m6rqpjrey" path="res://scenes/MainMenu/main_menu_gui.tscn" id="2_7vhwp"]
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_7vhwp")
+
+[node name="MainMenuGUI" parent="." instance=ExtResource("2_7vhwp")]
+
+[node name="Backdrop3d" parent="." instance=ExtResource("1_fxnin")]
+
+[connection signal="exitPressed" from="MainMenuGUI" to="." method="_on_exit_pressed"]
+[connection signal="increaseSpeed" from="MainMenuGUI" to="Backdrop3d" method="_on_funni_pressed"]
+[connection signal="playPressed" from="MainMenuGUI" to="." method="_on_play_pressed"]
+[connection signal="settingsPressed" from="MainMenuGUI" to="." method="_on_settings_pressed"]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlrnw5rgnju37"]
+
+[ext_resource type="Script" uid="uid://cboshjcvxclox" path="res://scenes/game1/beegame.gd" id="1_g1xty"]
+[ext_resource type="Texture2D" uid="uid://cen2gjalo25v2" path="res://assets/textures/circle.png" id="1_ym7uv"]
+[ext_resource type="Script" uid="uid://cr1e7ciufr1l6" path="res://scenes/game1/player.gd" id="2_lttam"]
+[ext_resource type="PackedScene" uid="uid://bjsobcl7nber5" path="res://scenes/game1/platform.tscn" id="4_lttam"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_arstt"]
+radius = 23.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1xty"]
+size = Vector2(1152, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lttam"]
+size = Vector2(20, 649)
+
+[node name="Beegame" type="Node2D"]
+script = ExtResource("1_g1xty")
+
+[node name="Player" type="RigidBody2D" parent="."]
+position = Vector2(577, 577)
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("2_lttam")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_ym7uv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_arstt")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 628.0
+offset_right = 1250.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.5489626, 0.5489626, 0.54896253, 1)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(576, 638)
+shape = SubResource("RectangleShape2D_g1xty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(576, -10)
+shape = SubResource("RectangleShape2D_g1xty")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1162, 323)
+shape = SubResource("RectangleShape2D_lttam")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-10, 323.5)
+shape = SubResource("RectangleShape2D_lttam")
+
+[node name="Platform" parent="." instance=ExtResource("4_lttam")]
+position = Vector2(387, 509)

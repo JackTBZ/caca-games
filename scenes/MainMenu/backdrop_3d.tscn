@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://xvogcebaehm3"]
+
+[ext_resource type="Script" uid="uid://tae2qhikyb3e" path="res://code/backdrop_3d.gd" id="1_5ffgl"]
+
+[sub_resource type="Environment" id="Environment_5ooot"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.69
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ffgl"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfses"]
+albedo_color = Color(0.23339736, 0.23339736, 0.23339736, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fnwoo"]
+material = SubResource("StandardMaterial3D_dfses")
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfer3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ncl0"]
+albedo_color = Color(0.23813272, 0.37370428, 0.49126667, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wbhaf"]
+material = SubResource("StandardMaterial3D_8ncl0")
+
+[node name="Backdrop3d" type="Node3D"]
+script = ExtResource("1_5ffgl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5ooot")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.74623454, 0.2784512, 0.6046478, 0.6546604, 0.47158614, 0.59078443, -0.12063891, 0.8367028, -0.53420484, 0, 0, 0)
+shadow_enabled = true
+
+[node name="plane" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="plane"]
+shape = SubResource("BoxShape3D_5ffgl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="plane"]
+mesh = SubResource("PlaneMesh_fnwoo")
+skeleton = NodePath("../..")
+
+[node name="cube" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cube"]
+shape = SubResource("BoxShape3D_yfer3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cube"]
+mesh = SubResource("BoxMesh_wbhaf")
+
+[node name="CameraAxis" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraAxis"]
+transform = Transform3D(0.70710677, -0.35355338, 0.6123724, 0, 0.8660254, 0.5, -0.70710677, -0.35355338, 0.6123724, 2, 0.5, 2)
+current = true
+fov = 40.0

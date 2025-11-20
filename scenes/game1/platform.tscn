@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjsobcl7nber5"]
+
+[ext_resource type="Script" uid="uid://ykqp5l4lstg0" path="res://scenes/game1/platform.gd" id="1_o3mrp"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rk1ww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rk1ww"]
+size = Vector2(185, 25)
+
+[node name="Platform" type="Node2D"]
+script = ExtResource("1_o3mrp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(175, 25)
+texture = SubResource("CanvasTexture_rk1ww")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_rk1ww")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3cyelf07oycs"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jp5ex"]
+specular_color = Color(0.3779188, 0.37791887, 0.37791884, 1)
+
+[node name="Cardslot" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(110, 160)
+texture = SubResource("CanvasTexture_jp5ex")
